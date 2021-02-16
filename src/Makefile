@@ -1,10 +1,10 @@
 #defining variable $(OBJS) to list of object files
-OBJS = UImain.o
+OBJS = UImain.o tokenizer.o
 
 
 # building the object file thru CFLAGS
 
-CFLAGS=-g #-03 # -g for debug, -03 for optimization
+CFLAGS=-g -O3 # -g for debug, -03 for optimization
 
 #first target build by default
 all:UImain

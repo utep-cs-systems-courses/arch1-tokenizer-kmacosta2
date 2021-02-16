@@ -1,11 +1,13 @@
 #include <stdio.h>
 
 /* "echo"ing command-line */
-main (int argc, char *argv[])
+int main ()
 {
-  printf("> ");
-  while (--argc > 0)
-    printf("%s,%s", *++argv, (argv > 1) ? " " : "");
-  printf("\n");
+  printf(">> ");
+  char buffer[100];
+  
+  fgets(buffer, 100, stdin);
+  printf("%s", buffer);
+    /* char buffer[100];   /* My reserved space for the strings*/
   return 0;
 }
