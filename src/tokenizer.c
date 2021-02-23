@@ -1,3 +1,4 @@
+#include <stdlib.h>
 /* Here I will define my five functions */
 
 int space_char (char c) /* return true if c is a whitepsace character, false otherwise*/
@@ -53,7 +54,26 @@ int count_words (char *str)
 /* Returns a freshly allocated new zero-terminated string containing <len> chars from <inStr> */
 char *copy_str (char *inStr, short len)
 {
-  
-  // return 'c';
+  char *newPtr =(char*)malloc(len*sizeof(char)+1); //sizeof is for getting the # of bytes needed
+
+   for(int i = 0; i < len; i++){
+    newPtr[i] = inStr[i];
+  }
+  newPtr[len] = '\0';
+    return newPtr;
+}
+/*
+returns a freshly allocated zero-terminated vector of freshly allocated space-separated tokens from zero-terminated str.
+ */
+char **tokenize (char *str) {
+  char **vector;
+    for (*str){
+      vector[i] = str;
+    }
 }
 
+
+
+//void print_tokens(){
+  
+//}
