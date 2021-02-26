@@ -85,11 +85,9 @@ char **tokenize (char *str)
 
 void print_tokens(char **tokens)
 {//referencing one word at a time.
-  char b = 'a';
   for (int i = 0; *(tokens+i) != 0; i++)
       {
-	printf("%s", b);
-	printf("%s\n", tokens+i);
+	printf("%c\n", tokens+i);
       }
 }
 
