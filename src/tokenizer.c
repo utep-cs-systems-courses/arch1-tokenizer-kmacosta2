@@ -70,7 +70,7 @@ returns a freshly allocated zero-terminated vector of freshly allocated space-se
 char **tokenize (char *str)
 {
   int words = count_words(str);
-  char **vector = (char**)malloc((words+1)*sizeof(char));
+  char **vector = (char**)malloc((words+1)*sizeof(char*)); /*allocating for the size of character pointers*/
   char *endOfWord;
   char *beginWord= word_start(str);
   for (int i= 0; i < words; i++)
@@ -79,7 +79,7 @@ char **tokenize (char *str)
 	vector[i] = copy_str(beginWord, endOfWord-beginWord); 
 	beginWord = word_start(endOfWord); 
       }
-  *vector[words] = '\0'; 
+  vector[words] = 0; 
   return vector;
 }
 
@@ -87,7 +87,7 @@ void print_tokens(char **tokens)
 {//referencing one word at a time.
   for (int i = 0; *(tokens+i) != 0; i++)
       {
-	printf("%c\n", tokens+i);
+	printf("%s\n", *(tokens+i));
       }
 }
 
