@@ -4,16 +4,16 @@
 /* "echo"ing command-line */
 int main ()
 {
-  printf("  >> ");
+  printf(">> ");
   //char buffer[100];
   //fgets(buffer, 100, stdin);
   //printf("%s",buffer);
-  char *strin = "My dog dog has fleas.";
+  char *strin = "My dog has fleas.";
   
   char **vec = tokenize(strin);
 
-  //print_tokens(vec);
-  //free_tokens(vec);
+  print_tokens(vec);
+  free_tokens(vec);
   
   //printf("%s", strin);
   
