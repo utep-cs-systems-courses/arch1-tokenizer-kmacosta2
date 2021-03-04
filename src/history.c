@@ -16,7 +16,7 @@ List *init_history() {
 void add_history(List *list, char *str) {
   Item *new_item = (Item*)malloc(sizeof(Item));
   new_item->str = str;
-  new_item->id += 1;
+  new_item->id += 1;/*here im supposed to reference the updated id but not too sure, is this accurate or am i always setting id to 1? */
   list->root = new_item;
 }
 
