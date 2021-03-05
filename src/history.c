@@ -14,11 +14,17 @@ List *init_history() {
    char* str - the string to store 
 */
 void add_history(List *list, char *str) {
+  int len = 0;
+  char *temp_ref = str;
+  while (temp_ref != '\0')
+    {
+      len += 1;
+      temp_ref++; //save THESE changes
+    }
   Item *new_item = (Item*)malloc(sizeof(Item));
-  new_item->str = str;
+  new_item->str = copy_str(str, len); //making sure str has it own space in memory
   int id = 0;
   new_item->id = id;
-   
   if (!list->root)
     { //if there is nothing there, then add head
       list->root = new_item;
