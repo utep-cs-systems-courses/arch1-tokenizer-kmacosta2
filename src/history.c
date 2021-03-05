@@ -16,10 +16,20 @@ List *init_history() {
 void add_history(List *list, char *str) {
   Item *new_item = (Item*)malloc(sizeof(Item));
   new_item->str = str;
-  new_item->id += 1;/*here im supposed to reference the updated id but not too sure, is this accurate or am i always setting id to 1? */
+  new_item->id += 1;
+  if (!list->root)
+    { //if there is nothing there, then add head
   list->root = new_item;
+  }
+  else
+    {  //while there is something next
+      while(list->next)
+      {
+	list = list->next;
+      }//finally reached the tail
+  list->next = new_item;
+    }
 }
-
 /* Retrieve the string stored in the node where item->id == id.
     List* list - the linked list
     int id - the id of the item to find */
@@ -33,7 +43,6 @@ char *get_history(List *list, int id) {
   char *found = temp->str;
   return found;
 }
-//get_hostory s updated only locally for some reason
 
 /* Print the entire contents of the list. */
 void print_history(List *list) {
