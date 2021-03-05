@@ -16,18 +16,23 @@ List *init_history() {
 void add_history(List *list, char *str) {
   Item *new_item = (Item*)malloc(sizeof(Item));
   new_item->str = str;
-  new_item->id += 1;
+  int id = 0;
+  new_item->id = id;
+   
   if (!list->root)
     { //if there is nothing there, then add head
-  list->root = new_item;
-  }
+      list->root = new_item;
+    }
   else
     {  //while there is something next
-      while(list->next)
+      Item *curr_item = list->root;
+      while(curr_item->next)
       {
-	list = list->next;
+	curr_item = curr_item->next;
+	id += 1;
       }//finally reached the tail
-  list->next = new_item;
+      new_item->id = id;
+      curr_item->next = new_item;
     }
 }
 /* Retrieve the string stored in the node where item->id == id.
@@ -53,7 +58,7 @@ void print_history(List *list) {
       tmpHist = tmpHist->next;
     }
 }
-///////
+
 /* Free the history list and the strings it references. */
 void free_history(List *list) {
   Item *temp = list->root;
