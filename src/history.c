@@ -33,7 +33,7 @@ char *get_history(List *list, int id) {
   char *found = temp->str;
   return found;
 }
-
+//get_hostory s updated only locally for some reason
 
 /* Print the entire contents of the list. */
 void print_history(List *list) {
@@ -41,9 +41,10 @@ void print_history(List *list) {
   while(tmpHist)
     {
       printf("%s", tmpHist->str);
+      tmpHist = tmpHist->next;
     }
 }
-
+///////
 /* Free the history list and the strings it references. */
 void free_history(List *list) {
   Item *temp = list->root;
