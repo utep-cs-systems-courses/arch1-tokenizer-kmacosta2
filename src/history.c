@@ -2,10 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "history.h"
+#include "tokenizer.h"
 
 /*initialize the linklist to keep the history.*/
 List *init_history() {
   List *myList = (List*)malloc(sizeof(List));
+  myList->root = NULL;
   return myList;
 }
 
@@ -16,10 +18,10 @@ List *init_history() {
 void add_history(List *list, char *str) {
   int len = 0;
   char *temp_ref = str;
-  while (temp_ref != '\0')
+  while (*temp_ref != '\0')
     {
       len += 1;
-      temp_ref++; //save THESE changes
+      temp_ref++;
     }
   Item *new_item = (Item*)malloc(sizeof(Item));
   new_item->str = copy_str(str, len); //making sure str has it own space in memory
@@ -47,33 +49,38 @@ void add_history(List *list, char *str) {
 char *get_history(List *list, int id) {
   Item *temp = list->root;
   
-  while(temp && (temp->id != id))
+  while(temp->next)
+  {
+    if (temp->id == id)
     {
-      temp = temp->next;
+      return temp->str;
     }
-  char *found = temp->str;
-  return found;
+    temp = temp->next;
+  }
+  return NULL;
 }
 
 /* Print the entire contents of the list. */
-void print_history(List *list) {
+void print_history(List *list)
+{
   Item *tmpHist = list->root;
   while(tmpHist)
-    {
-      printf("%s", tmpHist->str);
-      tmpHist = tmpHist->next;
-    }
+  {
+     printf("%s", tmpHist->str);
+     tmpHist = tmpHist->next;
+  }
 }
 
 /* Free the history list and the strings it references. */
-void free_history(List *list) {
+void free_history(List *list)
+{
   Item *temp = list->root;
-  while(temp != NULL) //particularly for linkedList
-    {
+  while(temp != NULL) 
+  {
       Item *temp2 = temp->next; //since
       free(temp);
       temp = temp2;
-    }
+  }
   free(list); //dont need to free temps' since memory wasn't malloc'ed for it!
 }
 
